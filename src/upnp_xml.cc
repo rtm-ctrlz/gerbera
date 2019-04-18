@@ -926,7 +926,7 @@ void UpnpXMLBuilder::addResources(Ref<CdsItem> item, Ref<Element> element)
                 if (config->getBoolOption(CFG_SERVER_EXTEND_PROTOCOLINFO_DLNA_SEEK))
                     extend = extend + D_OP + "=" + D_OP_SEEK_ENABLED + ";";
                 else
-                    extend = extend + D_OP + "=" + D_OP_SEEK_DISABLED + ";"
+                    extend = extend + D_OP + "=" + D_OP_SEEK_DISABLED + ";";
                 extend = extend + D_CONVERSION_INDICATOR + "=" + D_NO_CONVERSION;
             }
 
