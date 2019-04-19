@@ -55,18 +55,18 @@ void ContentDirectoryService::doXGetFeatureList(Ref<ActionRequest> request) {
     log_debug("start\n");
     Ref<Element> response;
     response = xmlBuilder->createResponse(request->getActionName(), _(DESC_CDS_SERVICE_TYPE));
-    response->appendTextChild(_("Result"), _(
-        "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"+
-        "<Features xmlns=\"urn:schemas-upnp-org:av:avs\" \n" +
-            "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" \n" +
-            "xsi:schemaLocation=\"urn:schemas-upnp-org:av:avs http://www.upnp.org/schemas/av/avs.xsd\">\n" +
-                "<Feature name=\"samsung.com_BASICVIEW\" version=\"1\">\n" +
-                    "<container id=\"I\" type=\"object.item.imageItem\"/>\n" +
-                    "<container id=\"A\" type=\"object.item.audioItem\"/>\n" +
-                    "<container id=\"V\" type=\"object.item.videoItem\"/>\n" +
-                "</Feature>\n"+
-        "</Features>"
-    ));
+    response->appendTextChild(_("Result"), 
+        _("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n")+
+        _("<Features xmlns=\"urn:schemas-upnp-org:av:avs\" \n") +
+            _("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" \n" ) +
+            _("xsi:schemaLocation=\"urn:schemas-upnp-org:av:avs http://www.upnp.org/schemas/av/avs.xsd\">\n" ) +
+                _("<Feature name=\"samsung.com_BASICVIEW\" version=\"1\">\n" ) +
+                    _("<container id=\"I\" type=\"object.item.imageItem\"/>\n" ) +
+                    _("<container id=\"A\" type=\"object.item.audioItem\"/>\n" ) +
+                    _("<container id=\"V\" type=\"object.item.videoItem\"/>\n" ) +
+                _("</Feature>\n")+
+        _("</Features>")
+    );
   
     request->setResponse(response);
     log_debug("end\n");
