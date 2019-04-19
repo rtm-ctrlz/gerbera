@@ -63,6 +63,8 @@ protected:
     /// ui4 TotalMatches, ui4 UpdateID)
     void doBrowse(zmm::Ref<ActionRequest> request);
 
+    void doXGetFeatureList(zmm::Ref<ActionRequest> request);
+
     /// \brief UPnP standard defined action: Search()
     /// \param request Incoming ActionRequest.
     ///

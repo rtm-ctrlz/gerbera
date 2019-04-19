@@ -51,6 +51,26 @@ ContentDirectoryService::ContentDirectoryService(UpnpXMLBuilder* xmlBuilder, Upn
 
 ContentDirectoryService::~ContentDirectoryService() = default;
 
+void ContentDirectoryService::doXGetFeatureList(Ref<ActionRequest> request) {
+    log_debug("start\n");
+    Ref<Element> response;
+    response = xmlBuilder->createResponse(request->getActionName(), _(DESC_CDS_SERVICE_TYPE));
+    response->appendTextChild(_("Result"), _(
+        "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"+
+        "<Features xmlns=\"urn:schemas-upnp-org:av:avs\" \n" +
+            "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" \n" +
+            "xsi:schemaLocation=\"urn:schemas-upnp-org:av:avs http://www.upnp.org/schemas/av/avs.xsd\">\n" +
+                "<Feature name=\"samsung.com_BASICVIEW\" version=\"1\">\n" +
+                    "<container id=\"I\" type=\"object.item.imageItem\"/>\n" +
+                    "<container id=\"A\" type=\"object.item.audioItem\"/>\n" +
+                    "<container id=\"V\" type=\"object.item.videoItem\"/>\n" +
+                "</Feature>\n"+
+        "</Features>"
+    ));
+  
+    request->setResponse(response);
+    log_debug("end\n");
+}
 void ContentDirectoryService::doBrowse(Ref<ActionRequest> request)
 {
     log_debug("start\n");
@@ -265,6 +285,8 @@ void ContentDirectoryService::processActionRequest(Ref<ActionRequest> request)
         doGetSystemUpdateID(request);
     } else if (request->getActionName() == "Search") {
         doSearch(request);
+    } else if (request->getActionName() == "X_GetFeatureList") {
+        doXGetFeatureList(request);
     } else {
         // invalid or unsupported action
         log_info("unrecognized action %s\n", request->getActionName().c_str());
